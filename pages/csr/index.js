@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import {FixedSizeGrid as Grid} from 'react-window'
 import AutoSizer from "react-virtualized-auto-sizer";
 import SpeakerCard from '../../components/SpeakerCard'
+import Link from 'next/link'
 
 const CSR = () => {
   const [isComponentMounted, setIsComponentMounted] = useState(false);
@@ -28,6 +29,9 @@ const CSR = () => {
     <Head>
       <title>CSR</title>
     </Head>
+    <Link href="/">
+      <a>Home</a>
+    </Link>
     <div className="w-screen h-screen">
       <AutoSizer>
         {({ height, width }) => (

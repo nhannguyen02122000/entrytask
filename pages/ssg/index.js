@@ -2,6 +2,7 @@ import Head from 'next/head'
 import {FixedSizeGrid as Grid} from 'react-window'
 import AutoSizer from "react-virtualized-auto-sizer";
 import SpeakerCard from '../../components/SpeakerCard';
+import Link from 'next/link'
 
 export async function getStaticProps () {
   const respond = await fetch('https://randomuser.me/api/?results=1000');
@@ -19,6 +20,9 @@ const SSG = (props) => {
       <Head>
         <title>SSG</title>
       </Head>
+      <Link href="/">
+        <a>Home</a>
+      </Link>
       <div className="w-screen h-screen">
         <AutoSizer>
           {({ height, width }) => (
