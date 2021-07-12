@@ -1,36 +1,43 @@
 import Head from 'next/head'
-import useSWR from 'swr'
 import React, { useEffect, useState } from 'react'
-import {FixedSizeGrid as Grid} from 'react-window'
 import AutoSizer from "react-virtualized-auto-sizer";
-import SpeakerCard from '../../components/SpeakerCard'
+import SpeakerCard from '../../components/SpeakerCard';
 import Link from 'next/link'
+import {FixedSizeGrid as Grid} from 'react-window'
 
-const CSR = () => {
+export async function getServerSideProps () {
+  const respond = await fetch('https://randomuser.me/api/?results=1000');
+  const data = await respond.json();
+
+  return {
+    props: {data: data.results}
+  }
+}
+
+const SSRCSR = (props) => {
   const [isComponentMounted, setIsComponentMounted] = useState(false);
-  const {data, error} = useSWR('https://randomuser.me/api/?results=1000');
-
   useEffect(() => setIsComponentMounted(true), []);
 
-  if (!isComponentMounted) {
-    return (
-      <>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-        <h1>SSR pre-render phần này ở server</h1>
-      </>
-    )
+  if(!isComponentMounted) {
+    return <div>
+      <Head>
+        <title>SSRCSR_SV_RW</title>
+      </Head>
+      <Link href="/">
+        <a>Home</a>
+      </Link>
+      <h1>{JSON.stringify(props.data[0])}t</h1>
+    </div>
   }
 
-  if (!data) {
-    return(<h1>Fetching data</h1>)
+  if (!props.data) {
+    return <h1>No data</h1>
   }
 
   return (
     <>
     <Head>
-      <title>CSR</title>
+      <title>SSRCSR</title>
     </Head>
     <Link href="/">
       <a>Home</a>
@@ -50,7 +57,7 @@ const CSR = () => {
             {({columnIndex, rowIndex, style}) => {
               return (
                 <SpeakerCard
-                  ele = {data.results[columnIndex*3+rowIndex]}
+                  ele = {props.data[columnIndex*3+rowIndex]}
                   style = {style}
                 />
               )
@@ -58,9 +65,9 @@ const CSR = () => {
           </Grid>
         )}
       </AutoSizer>
-      </div>
+    </div>
     </>
   )
 }
   
-export default CSR;
+export default SSRCSR;

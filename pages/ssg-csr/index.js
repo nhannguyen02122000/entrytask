@@ -14,6 +14,9 @@ const SSGCSR = () => {
         <Head>
           <title>SSGCSR_SV_RW</title>
         </Head>
+        <Link href="/">
+          <a>Home</a>
+        </Link>
         <h1>SSG nè, do data fetch từ client</h1>;
       </>
     )
