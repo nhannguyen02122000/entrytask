@@ -13,7 +13,7 @@ export default function Home() {
       <section className="py-7">
         <div className="flex flex-wrap flex-col items-center gap-6">
           <h2 className="text-3xl font-sans font-light text-gray-700">Choose Mode</h2>
-          <div className="flex flex-col items-center gap-5 md:flex-row w-3/12 md:w-9/12">
+          <div className="flex flex-col items-center gap-5 md:flex-row w-5/12 sm:w-3/12 md:w-9/12">
             <Link href="/ssg" passHref>
               <Button
                 color="green"
