@@ -14,7 +14,7 @@ export default function Home() {
         <div className="flex flex-wrap flex-col items-center gap-6">
           <h2 className="text-3xl font-sans font-light text-gray-700">Choose Mode</h2>
           <div className="flex flex-col items-center gap-5 md:flex-row w-5/12 sm:w-3/12 md:w-9/12">
-            <Link href="/ssg" passHref>
+            <Link href="/ssg" passHref prefetch={false}>
               <Button
                 color="green"
                 buttonType="filled"
@@ -28,7 +28,7 @@ export default function Home() {
                 SSG
               </Button>
             </Link>
-            <Link href="/csr" passHref>
+            <Link href="/csr" passHref prefetch={false}>
               <Button
                 color="teal"
                 buttonType="filled"
@@ -42,7 +42,7 @@ export default function Home() {
                 CSR
               </Button>
             </Link>
-            <Link href="/ssg-csr" passHref>
+            <Link href="/ssg-csr" passHref prefetch={false}>
               <Button
                 color="cyan"
                 buttonType="filled"
@@ -56,7 +56,7 @@ export default function Home() {
                 SSG-CSR
               </Button>
             </Link>
-            <Link href="/ssr-csr" passHref>
+            <Link href="/ssr-csr" passHref prefetch={false}> 
               <Button
                 color="lightBlue"
                 buttonType="filled"
